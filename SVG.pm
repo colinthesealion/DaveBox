@@ -56,7 +56,8 @@ sub Part {
 	my ($args) = @_;
 
 	my $svg = Rect(@$args{qw(w h)}, { class => 'etch' });
-	if ($args->{label}) {
+	# Easel no like tet
+	if (0 && $args->{label}) {
 		$svg .= Text($args->{label}, {
 			position => {
 				x => $args->{w} / 2,
@@ -129,7 +130,7 @@ sub JoinVertical {
 	my $svg = join("\n", map {
 		my $part = $_;
 		my $part_svg = sprintf(
-			q{<g transform="translate(%f, %f)"><g data-sub="SVG::JoinVertical:2" transform="translate(%f,0)">%s</g></g>},
+			q{<g transform="translate(%f, %f)"><g transform="translate(%f,0)">%s</g></g>},
 			$w / 2,
 			$y,
 			-$part->{w} / 2,
@@ -225,7 +226,7 @@ sub Indent {
 	return {
 		w => $svg->{w} + 2 * $x,
 		h => $svg->{h} + 2 * $y,
-		svg => sprintf(q{<g data-sub="SVG::Indent" transform="translate(%f, %f)">%s</g>}, $x, $y, $svg->{svg}),
+		svg => sprintf(q{<g transform="translate(%f, %f)">%s</g>}, $x, $y, $svg->{svg}),
 	};
 }
 
@@ -364,176 +365,6 @@ sub DovetailIn {
 	};
 }
 
-sub DovetailIn_o {
-	my ($args) = @_;
-
-	my @path;
-	push(@path, ['M', 0, 0]);
-	push(@path, ['l', $args->{w}, 0]);
-
-	my $tab_height = $args->{h} / (2 * $args->{count} + 1);
-	my $slot_height = $tab_height + 2 * $Dimensions::Tolerance;
-	my $slot_bolt_height = ($slot_height - 2 * $Dimensions::Materials{bolts}{r}) / 2;
-	my $bolt_length = $Dimensions::Materials{bolts}{l} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Materials{nuts}{d};
-	my $slot_nut_height = ($Dimensions::Materials{nuts}{h} + 2 * $Dimensions::Tolerance - 2 * $Dimensions::Materials{bolts}{r}) / 2;
-	#warn "IN: $Dimensions::Materials{bolts}{l} $Dimensions::Materials{plexiglass}{thickness} $Dimensions::Materials{nuts}{d} $bolt_length\n";
-	push(@path, ['l', 0, $tab_height - $Dimensions::Tolerance]);
-	for (my $i = 0; $i < $args->{count}; $i++) {
-		push(@path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
-		push(@path, ['l', 0, $slot_bolt_height]);
-		push(@path, ['l', -$bolt_length, 0]);
-		push(@path, ['l', 0, -$slot_nut_height]);
-		push(@path, ['l', -$Dimensions::Materials{nuts}{d} - $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, $Dimensions::Materials{nuts}{h} + 2 * $Dimensions::Tolerance]);
-		push(@path, ['l', $Dimensions::Materials{nuts}{d} + $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, -$slot_nut_height]);
-		push(@path, ['l', $bolt_length, 0]);
-		push(@path, ['l', 0, $slot_bolt_height]);
-		push(@path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-		if ($i < $args->{count} - 1) {
-			push(@path, ['l', 0, $tab_height - 2 * $Dimensions::Tolerance]);
-		}
-		else {
-			push(@path, ['l', 0, $tab_height - $Dimensions::Tolerance]);
-		}
-	}
-	push(@path, ['l', -$args->{w}, 0]);
-
-	push(@path, ['l', 0, -$tab_height + $Dimensions::Tolerance]);
-	for (my $i = 0; $i < $args->{count}; $i++) {
-		push(@path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-		push(@path, ['l', 0, -$slot_bolt_height]);
-		push(@path, ['l', $bolt_length, 0]);
-		push(@path, ['l', 0, $slot_nut_height]);
-		push(@path, ['l', $Dimensions::Materials{nuts}{d} + $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, -$Dimensions::Materials{nuts}{h} - 2 * $Dimensions::Tolerance]);
-		push(@path, ['l', -$Dimensions::Materials{nuts}{d} - $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, $slot_nut_height]);
-		push(@path, ['l', -$bolt_length, 0]);
-		push(@path, ['l', 0, -$slot_bolt_height]);
-		push(@path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
-		if ($i < $args->{count} - 1) {
-			push(@path, ['l', 0, -$tab_height + 2 * $Dimensions::Tolerance]);
-		}
-		else {
-			push(@path, ['l', 0, -$tab_height + $Dimensions::Tolerance]);
-		}
-	}
-	push(@path, ['Z']);
-
-	return {
-		w => $args->{w},
-		h => $args->{h},
-		svg => join("\n", (
-			Path(\@path, $args),
-			map {
-				Circle(
-					$Dimensions::Materials{bolts}{r} + $Dimensions::Tolerance,
-					@$_,
-					{ class => 'cut' },
-				);
-			} (
-				[$Dimensions::Materials{plexiglass}{thickness} / 2, 1 * $tab_height / 2],
-				[$Dimensions::Materials{plexiglass}{thickness} / 2, 5 * $tab_height / 2],
-				[$Dimensions::Materials{plexiglass}{thickness} / 2, 9 * $tab_height / 2],
-				[$args->{w} - $Dimensions::Materials{plexiglass}{thickness} / 2, 1 * $tab_height / 2],
-				[$args->{w} - $Dimensions::Materials{plexiglass}{thickness} / 2, 5 * $tab_height / 2],
-				[$args->{w} - $Dimensions::Materials{plexiglass}{thickness} / 2, 9 * $tab_height / 2],
-			),
-		)),
-	};
-}
-
-sub DovetailOut_o {
-	my ($args) = @_;
-
-	my @path;
-	push(@path, ['M', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-	push(@path, ['l', $args->{w}, 0]);
-
-	my $tab_height = $args->{h} / (2 * $args->{count} + 1);
-	my $slot_height = $tab_height + 2 * $Dimensions::Tolerance;
-	my $slot_bolt_height = ($slot_height - 2 * $Dimensions::Materials{bolts}{r}) / 2;
-	my $bolt_length = $Dimensions::Materials{bolts}{l} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Materials{nuts}{d};
-	my $slot_nut_height = ($Dimensions::Materials{nuts}{h} + 2 * $Dimensions::Tolerance - 2 * $Dimensions::Materials{bolts}{r}) / 2;
-	#warn "OUT: $Dimensions::Materials{bolts}{l} $Dimensions::Materials{plexiglass}{thickness} $Dimensions::Materials{nuts}{d} $bolt_length\n";
-	for (my $i = 0; $i <= $args->{count}; $i++) {
-		if ($i == 0) {
-			push(@path, ['l', 0, $slot_bolt_height - $Dimensions::Tolerance / 2]);
-		}
-		else {
-			push(@path, ['l', 0, $slot_bolt_height]);
-		}
-		push(@path, ['l', -$bolt_length, 0]);
-		push(@path, ['l', 0, -$slot_nut_height]);
-		push(@path, ['l', -$Dimensions::Materials{nuts}{d} - $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, $Dimensions::Materials{nuts}{h} + 2 * $Dimensions::Tolerance]);
-		push(@path, ['l', $Dimensions::Materials{nuts}{d} + $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, -$slot_nut_height]);
-		push(@path, ['l', $bolt_length, 0]);
-		if ($i == 0) {
-			push(@path, ['l', 0, $slot_bolt_height]);
-		}
-		else {
-			push(@path, ['l', 0, $slot_bolt_height - $Dimensions::Tolerance / 2]);
-		}
-		if ($i < $args->{count}) {
-			push(@path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-			push(@path, ['l', 0, $tab_height - 2 * $Dimensions::Tolerance]);
-			push(@path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
-		}
-	}
-	push(@path, ['l', -$args->{w}, 0]);
-
-	for (my $i = 0; $i <= $args->{count}; $i++) {
-		if ($i == 0) {
-			push(@path, ['l', 0, -$slot_bolt_height + $Dimensions::Tolerance / 2, 0]);
-		}
-		else {
-			push(@path, ['l', 0, -$slot_bolt_height]);
-		}
-		push(@path, ['l', $bolt_length, 0]);
-		push(@path, ['l', 0, $slot_nut_height]);
-		push(@path, ['l', $Dimensions::Materials{nuts}{d} + $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, -$Dimensions::Materials{nuts}{h} - 2 * $Dimensions::Tolerance]);
-		push(@path, ['l', -$Dimensions::Materials{nuts}{d} - $Dimensions::Tolerance, 0]);
-		push(@path, ['l', 0, $slot_nut_height]);
-		push(@path, ['l', -$bolt_length, 0]);
-		if ($i == 0) {
-			push(@path, ['l', 0, -$slot_bolt_height]);
-		}
-		else {
-			push(@path, ['l', 0, -$slot_bolt_height + $Dimensions::Tolerance / 2, 0]);
-		}
-		if ($i < $args->{count}) {
-			push(@path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
-			push(@path, ['l', 0, -$tab_height + 2 * $Dimensions::Tolerance]);
-			push(@path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-		}
-	}
-	push(@path, ['Z']);
-
-	return {
-		w => $args->{w} + 2 * $Dimensions::Materials{plexiglass}{thickness},
-		h => $args->{h},
-		svg => join("\n", (
-			Path(\@path, $args),
-						map {
-				Circle(
-					$Dimensions::Materials{bolts}{r} + $Dimensions::Tolerance,
-					@$_,
-					{ class => 'cut' },
-				);
-			} (
-				[$Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_height / 2],
-				[$Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_height / 2],
-				[$args->{w} + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_height / 2],
-				[$args->{w} + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_height / 2],
-			),
-		)),
-	};
-}
-
 sub Slots {
 	my ($args) = @_;
 
@@ -545,7 +376,7 @@ sub Slots {
 		h => $Dimensions::Materials{plexiglass}{thickness} + $Dimensions::Tolerance,
 		svg => join("\n", map {
 			sprintf(
-				q{<g data-sub="SVG::Slots" transform="translate(%f, 0)">%s</g>},
+				q{<g transform="translate(%f, 0)">%s</g>},
 				(2 * $_ + 1) * $tab_width - $Dimensions::Tolerance / 2, $slot,
 			);
 		} (0..($args->{count}-1)/2 - 1)),
@@ -561,7 +392,7 @@ sub Port {
 		$hole->{r}
 			? Circle(@$hole{qw(r cx cy)}, { class => 'cut' })
 			: sprintf(
-				q{<g data-sub="SVG::Port" transform="translate(%f, %f)"><g data-sub="SVG::Port:2" transform="translate(%f, %f)">%s</g></g>},
+				q{<g transform="translate(%f, %f)"><g transform="translate(%f, %f)">%s</g></g>},
 				@$hole{qw(x y)},
 				-$hole->{w} / 2,
 				-$hole->{h} / 2,
@@ -569,10 +400,11 @@ sub Port {
 			);
 	} @{ $port{holes} || [] });
 
+	# Easel no like text
 	if (0 && $args->{label}) {
 		$port{h} += $Dimensions::FontSize / 2;
 		$port{svg} = sprintf(
-			q{%s<g data-sub="SVG::Port:label" transform="translate(0, %f)">%s</g>},
+			q{%s<g transform="translate(0, %f)">%s</g>},
 			Text($args->{label}, {
 				position => {
 					x => $port{w} / 2,
