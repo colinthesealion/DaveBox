@@ -228,7 +228,7 @@ sub Enclosure {
 	}
 	elsif ($key eq 'left' || $key eq 'right') {
 		return SVG::Dovetail({
-			w => $innards->{w},# + 2 * $Dimensions::Padding,# + 2 * $Dimensions::Materials{plexiglass}{thickness},
+			w => $innards->{w},
 			h => $innards->{h} + 2 * $Dimensions::Padding,
 			count => 2,
 			class => 'cut',
