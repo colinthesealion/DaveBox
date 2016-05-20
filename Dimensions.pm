@@ -76,6 +76,8 @@ our %Parts = (
 			{
 				r => 1.25,
 				cx => 2.935,
+				# 75 is the height of the board
+				# 72 - 3.2 is the distance between the holes
 				cy => (75 - (72 - 3.2)) / 2,
 			},
 			{
@@ -187,40 +189,5 @@ our %Materials = (
 
 our $Padding = 5;
 our $Tolerance = 1;
-
-our $TotalWidth = sum(
-	$Padding,
-	max(
-		sum(
-			$Parts{perma_proto_quarter}{w},
-			$Padding,
-			$Parts{arduino}{w},
-		),
-		sum(
-			$Parts{power_bus}{w},
-			$Padding,
-			$Parts{relay_board}{w},
-		),
-	),
-	$Padding,
-);
-
-our $TotalHeight = sum(
-	$Padding,
-	max(
-		$Parts{perma_proto_quarter}{h},
-		$Parts{arduino}{h},
-	),
-	$Padding,
-	max(
-		$Parts{power_bus}{h},
-		$Parts{relay_board}{h},
-	),
-	$Padding,
-);
-
 our $MaxPartsHeight = 40;
-
-our $Top = 30;
-
 our $FontSize = 15;

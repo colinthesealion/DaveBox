@@ -93,7 +93,7 @@ sub JoinHorizontal {
 	my $svg = join("\n", map {
 		my $part = $_;
 		my $part_svg = sprintf(
-			q{<g data-sub="SVG::JoinHorizontal" transform="translate(%f, %f)">%s</g>},
+			q{<g transform="translate(%f, %f)">%s</g>},
 			$x,
 			($args->{align} eq 'BOTTOM')
 				? $h - $part->{h}
@@ -129,7 +129,7 @@ sub JoinVertical {
 	my $svg = join("\n", map {
 		my $part = $_;
 		my $part_svg = sprintf(
-			q{<g data-sub="SVG::JoinVertical" transform="translate(%f, %f)"><g data-sub="SVG::JoinVertical:2" transform="translate(%f,0)">%s</g></g>},
+			q{<g transform="translate(%f, %f)"><g data-sub="SVG::JoinVertical:2" transform="translate(%f,0)">%s</g></g>},
 			$w / 2,
 			$y,
 			-$part->{w} / 2,
@@ -152,12 +152,12 @@ sub Overlay {
 	my $h = max(map { $_->{h} } @parts);
 	my $w = max(map { $_->{w} } @parts);
 	my $svg = sprintf(
-		q{<g data-sub="SVG::Overlay" transform="translate(%f, %f)">%s</g>},
+		q{<g transform="translate(%f, %f)">%s</g>},
 		$w / 2,
 		$h / 2,
 		join("\n", map {
 			sprintf(
-				q{<g data-sub="SVG::Overlay:2" transform="translate(%f, %f)">%s</g>},
+				q{<g transform="translate(%f, %f)">%s</g>},
 				-$_->{w} / 2,
 				-$_->{h} / 2,
 				$_->{svg},

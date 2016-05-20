@@ -15,28 +15,13 @@ use List::AllUtils qw(
 sub Ports {
 	my ($key) = @_;
 
-	#	my $front_ports = SVG::Overlay(
 	my $front = SVG::Overlay(
 		SVG::RegularHexagon(11.5, { class => 'route' }),
 		SVG::Port({
 			%{ $Dimensions::IOPorts{mic_4} },
+			label => 'cntrl',
 		}),
 	);
-#	my $front = {
-#		w => $front_ports->{w},
-#		h => $front_ports->{h},
-#		svg => sprintf(
-#			q{%s<g transform="translate(0, %f)">%s</g>},
-#			SVG::Text('cntrl', {
-#				position => {
-#					x => $front_ports->{w} / 2,
-#				},
-#				class => 'etch',
-#			}),
-#			$Dimensions::FontSize / 2,
-#			$front_ports->{svg},
-#		),
-#	};
 
 	my $back = SVG::Port({
 		%{ $Dimensions::IOPorts{binding_posts} },
@@ -47,42 +32,14 @@ sub Ports {
 		parts => [
 			SVG::JoinVertical({
 				parts => [
-#					SVG::JoinHorizontal({
-#						parts => [
-#							{
-#								h => $Dimensions::IOPorts{mic_3}{h},
-#								w => 30,
-#								svg => SVG::Text('gas', {
-#									position => {
-#										x => 15,
-#										y => $Dimensions::IOPorts{mic_3}{h} / 2,
-#									},
-#									class => 'etch',
-#								}),
-#							},
-							SVG::Port({
-								%{ $Dimensions::IOPorts{mic_3} },
-							}),
-#						],
-#					}),
-#					SVG::JoinHorizontal({
-#						parts => [
-#							{
-#								h => $Dimensions::IOPorts{mic_3}{h},
-#								w => 30,
-#								svg => SVG::Text('spd', {
-#									position => {
-#										x => 15,
-#										y => $Dimensions::IOPorts{mic_3}{h} / 2,
-#									},
-#									class => 'etch',
-#								}),
-#							},
-							SVG::Port({
-								%{ $Dimensions::IOPorts{mic_3} },
-							}),
-#						],
-#					}),
+					SVG::Port({
+						%{ $Dimensions::IOPorts{mic_3} },
+						label => 'gas',
+					}),
+					SVG::Port({
+						%{ $Dimensions::IOPorts{mic_3} },
+						label => 'spd',
+					}),
 				],
 			}),
 			{
@@ -90,7 +47,7 @@ sub Ports {
 			},
 			SVG::Port({
 				%{ $Dimensions::IOPorts{inlet_c20} },
-#				label => 'brk',
+				label => 'brk',
 			}),
 		],
 	});
@@ -106,42 +63,14 @@ sub Ports {
 			},
 			SVG::JoinVertical({
 				parts => [
-#					SVG::JoinHorizontal({
-#						parts => [
-#							{
-#								h => $Dimensions::IOPorts{mic_3}{h},
-#								w => 30,
-#								svg => SVG::Text('gas', {
-#									position => {
-#										x => 15,
-#										y => $Dimensions::IOPorts{mic_3}{h} / 2,
-#									},
-#									class => 'etch',
-#								}),
-#							},
-							SVG::Port({
-								%{ $Dimensions::IOPorts{mic_3} },
-							}),
-#						],
-#					}),
-#					SVG::JoinHorizontal({
-#						parts => [
-#							{
-#								h => $Dimensions::IOPorts{mic_3}{h},
-#								w => 30,
-#								svg => SVG::Text('spd', {
-#									position => {
-#										x => 15,
-#										y => $Dimensions::IOPorts{mic_3}{h} / 2,
-#									},
-#									class => 'etch',
-#								}),
-#							},
-							SVG::Port({
-								%{ $Dimensions::IOPorts{mic_3} },
-							}),
-#						],
-#					}),
+					SVG::Port({
+						%{ $Dimensions::IOPorts{mic_3} },
+						label => 'gas',
+					}),
+					SVG::Port({
+						%{ $Dimensions::IOPorts{mic_3} },
+						label => 'spd',
+					}),
 				],
 			}),
 		],
@@ -180,11 +109,11 @@ sub Innards {
 					parts => [
 						SVG::Part({
 							%{ $Dimensions::Parts{perma_proto_quarter} },
-							#label => '5V',
+							label => '5V',
 						}),
 						SVG::Part({
 							%{ $Dimensions::Parts{arduino} },
-							#label => 'arduino',
+							label => 'arduino',
 						}),
 					],
 				}),
@@ -193,11 +122,11 @@ sub Innards {
 					parts => [
 						SVG::Part({
 							%{ $Dimensions::Parts{power_bus} },
-							#label => '12V',
+							label => '12V',
 						}),
 						SVG::Part({
 							%{ $Dimensions::Parts{relay_board} },
-							#label => 'relays',
+							label => 'relays',
 						}),
 					],
 				}),
@@ -212,13 +141,14 @@ sub Innards {
 		return {
 			w => $bottom->{w},
 			h => $bottom->{h},
-#			svg => SVG::Text('dave', {
-#				position => {
-#					x => $bottom->{w} / 2,
-#					y => $bottom->{h} / 2,
-#				},
-#				class => 'etch'
-#			}),
+			# Easel doesn't like text
+			#svg => SVG::Text('dave', {
+			#	position => {
+			#		x => $bottom->{w} / 2,
+			#		y => $bottom->{h} / 2,
+			#	},
+			#	class => 'etch'
+			#}),
 		};
 	}
 
@@ -312,27 +242,10 @@ sub Enclosure {
 sub Complete {
 	my ($key) = @_;
 
-#	return SVG::JoinVertical({
-#		parts => [
 	return SVG::Overlay(
 		Innards($key),
 		Enclosure($key),
 	);
-#			{
-#				w => 25.4,
-#				h => 20,
-#				svg => SVG::Path([['M', 0, 10], ['l', 25.4, 0]], { class => 'cut' }),
-#			},
-#			{
-#				w => 25.4,
-#				h => $Dimensions::FontSize,
-#				svg => SVG::Text(q{1"}, {
-#					position => { x => 12.9 },
-#					class => 'cut',
-#				}),
-#			},
-#		],
-#	});
 }
 
 1;
