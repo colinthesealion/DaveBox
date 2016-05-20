@@ -1,0 +1,34 @@
+.cut {
+    stroke: black;
+    stroke-width: 0.1;
+    fill: none;
+    color: black;
+}
+
+.etch {
+    stroke: red;
+    stroke-width: 0.1;
+    fill: none;
+    color: red;
+}
+
+.route {
+    stroke: fuchsia;
+    stroke-width: 0.1;
+    fill: none;
+}
+
+text {
+    text-anchor: middle;
+    font-size: 15;
+    font-weight: light;
+}
+
+text.etch {
+    fill: red;
+}
+
+text.cut {
+    font-size: 8;
+    fill: black;
+}

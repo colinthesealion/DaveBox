@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="158.400000mm" height="202.100000mm" viewBox="0 0 158.400000 202.100000">
+		<defs>
+			<style type="text/css"><![CDATA[
+				.cut {
+    stroke: black;
+    stroke-width: 0.1;
+    fill: none;
+    color: black;
+}
+
+.etch {
+    stroke: red;
+    stroke-width: 0.1;
+    fill: none;
+    color: red;
+}
+
+.route {
+    stroke: fuchsia;
+    stroke-width: 0.1;
+    fill: none;
+}
+
+text {
+    text-anchor: middle;
+    font-size: 15;
+    font-weight: light;
+}
+
+text.etch {
+    fill: red;
+}
+
+text.cut {
+    font-size: 8;
+    fill: black;
+}
+			]]></style>
+		</defs>
+	<g data-sub="SVG::Indent" transform="translate(5.000000, 5.000000)"><g data-sub="SVG::Overlay" transform="translate(74.200000, 96.050000)"><g data-sub="SVG::Overlay:2" transform="translate(-63.200000, -85.050000)"></g>
+<g data-sub="SVG::Overlay:2" transform="translate(-74.200000, -96.050000)"><rect width="148.400000" height="192.100000" class="cut" /></g></g></g></svg>
