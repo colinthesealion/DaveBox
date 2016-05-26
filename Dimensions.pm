@@ -191,3 +191,4 @@ our $Padding = 5;
 our $Tolerance = 1;
 our $MaxPartsHeight = 40;
 our $FontSize = 15;
+our $BitSize = 3.175; # mm = 0.125in

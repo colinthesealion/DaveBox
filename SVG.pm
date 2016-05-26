@@ -268,6 +268,34 @@ sub BoltSlot {
 	);
 }
 
+sub BoltSlot2 {
+	my ($slot_height, $direction) = @_;
+
+	my $bolt_slot_height = 2 * $Dimensions::Materials{bolts}{r};
+	my $bolt_offset_h = ($slot_height - $bolt_slot_height) / 2;
+	my $nut_slot_height = $Dimensions::Materials{nuts}{h};
+	my $nut_slot_width = $Dimensions::Materials{nuts}{d};
+	my $bolt_slot_width = $Dimensions::Materials{bolts}{l} - $Dimensions::Materials{plexiglass}{thickness};
+	my $nut_offset_w = ($bolt_slot_width - $nut_slot_width) / 2;
+	my $nut_offset_h = ($nut_slot_height - $bolt_slot_height) / 2;
+
+	return (
+		['l', 0, $direction * $bolt_offset_h],
+		['l', -$direction * ($nut_offset_w + $Dimensions::BitSize), 0],
+		['l', 0, -$direction * $nut_offset_h],
+		['l', -$direction * ($nut_slot_width - $Dimensions::BitSize), 0],
+		['l', 0, $direction * $nut_offset_h],
+		['l', -$direction * $nut_offset_w, 0],
+		['l', 0, $direction * ($bolt_slot_height - $Dimensions::BitSize)],
+		['l', $direction * $nut_offset_w, 0],
+		['l', 0, $direction * $nut_offset_h],
+		['l', $direction * ($nut_slot_width - $Dimensions::BitSize), 0],
+		['l', 0, -$direction * $nut_offset_h],
+		['l', $direction * ($nut_offset_w + $Dimensions::BitSize), 0],
+		['l', 0, $direction * $bolt_offset_h],
+	);
+}
+
 sub DovetailOut {
 	my ($args) = @_;
 
@@ -278,31 +306,59 @@ sub DovetailOut {
 	my $tab_size = $args->{h} / (2 * $args->{count} + 1);
 	for (my $i = 0; $i < $args->{count}; $i++) {
 		push(@path, BoltSlot($tab_size, 1));
-		push(@path, ['l', 0, $Dimensions::Tolerance]); #new
+		push(@path, ['l', 0, $Dimensions::Tolerance]);
 		push(@path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-		push(@path, ['l', 0, $tab_size - 2 * $Dimensions::Tolerance]); #changed
+		push(@path, ['l', 0, $tab_size - 2 * $Dimensions::Tolerance]);
 		push(@path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
-		push(@path, ['l', 0, $Dimensions::Tolerance]); #new
+		push(@path, ['l', 0, $Dimensions::Tolerance]);
 	}
 	push(@path, BoltSlot($tab_size, 1));
 	push(@path, ['l', -$args->{w}, 0]);
 	for (my $i = 0; $i < $args->{count}; $i++) {
 		push(@path, BoltSlot($tab_size, -1));
-		push(@path, ['l', 0, -$Dimensions::Tolerance]); #new
+		push(@path, ['l', 0, -$Dimensions::Tolerance]);
 		push(@path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
-		push(@path, ['l', 0, -$tab_size + 2 * $Dimensions::Tolerance]); #changed
+		push(@path, ['l', 0, -$tab_size + 2 * $Dimensions::Tolerance]);
 		push(@path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
-		push(@path, ['l', 0, -$Dimensions::Tolerance]); #new
+		push(@path, ['l', 0, -$Dimensions::Tolerance]);
 	}
 	push(@path, BoltSlot($tab_size, -1));
 	push(@path, ['Z']);
+
+	my @new_path;
+	push(@new_path, ['M', $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::BitSize / 2, - $Dimensions::BitSize / 2]);
+	push(@new_path, ['l', $args->{w} + $Dimensions::BitSize, 0]);
+	push(@new_path, ['l', 0, $Dimensions::BitSize]); # Because all of the rest of the slots will be offset this much
+	for (my $i = 0; $i < $args->{count}; $i++) {
+		push(@new_path, BoltSlot2($tab_size, 1));
+		push(@new_path, ['l', 0, $Dimensions::Tolerance]);
+		push(@new_path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
+		push(@new_path, ['l', 0, $tab_size - 2 * $Dimensions::Tolerance + $Dimensions::BitSize]);
+		push(@new_path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
+		push(@new_path, ['l', 0, $Dimensions::Tolerance]);
+	}
+	push(@new_path, BoltSlot2($tab_size, 1));
+	push(@new_path, ['l', 0, $Dimensions::BitSize]);
+	push(@new_path, ['l', -$args->{w} - $Dimensions::BitSize, 0]);
+	push(@new_path, ['l', 0, -$Dimensions::BitSize]); # Because all of the rest of the slots will be offset this much
+	for (my $i = 0; $i < $args->{count}; $i++) {
+		push(@new_path, BoltSlot2($tab_size, -1));
+		push(@new_path, ['l', 0, -$Dimensions::Tolerance]);
+		push(@new_path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
+		push(@new_path, ['l', 0, -$tab_size + 2 * $Dimensions::Tolerance - $Dimensions::BitSize]);
+		push(@new_path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
+		push(@new_path, ['l', 0, -$Dimensions::Tolerance]);
+	}
+	push(@new_path, BoltSlot2($tab_size, -1));
+	push(@new_path, ['Z']);
 
 	return {
 		w => $args->{w} + 2 * $Dimensions::Materials{plexiglass}{thickness},
 		h => $args->{h},
 		svg => join("\n", (
 			Path(\@path, $args),
-						map {
+			Path(\@new_path, $args),
+			map {
 				Circle(
 					$Dimensions::Materials{bolts}{r},
 					@$_,
@@ -342,11 +398,31 @@ sub DovetailIn {
 	}
 	push(@path, ['Z']);
 
+	my @new_path;
+	push(@new_path, ['M', -$Dimensions::BitSize / 2, -$Dimensions::BitSize / 2]);
+	push(@new_path, ['l', $args->{w} + $Dimensions::BitSize, 0]);
+	for (my $i = 0; $i < $args->{count}; $i++) {
+		push(@new_path, ['l', 0, $tab_size + $Dimensions::BitSize]);
+		push(@new_path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
+		push(@new_path, BoltSlot2($tab_size, 1));
+		push(@new_path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
+	}
+	push(@new_path, ['l', 0, $tab_size + $Dimensions::BitSize]);
+	push(@new_path, ['l', -$args->{w} - $Dimensions::BitSize, 0]);
+	for (my $i = 0; $i < $args->{count}; $i++) {
+		push(@new_path, ['l', 0, -$tab_size - $Dimensions::BitSize]);
+		push(@new_path, ['l', $Dimensions::Materials{plexiglass}{thickness}, 0]);
+		push(@new_path, BoltSlot2($tab_size, -1));
+		push(@new_path, ['l', -$Dimensions::Materials{plexiglass}{thickness}, 0]);
+	}
+	push(@new_path, ['Z']);
+
 	return {
 		w => $args->{w},
 		h => $args->{h},
 		svg => join("\n", (
 			Path(\@path, $args),
+			Path(\@new_path, $args),
 			map {
 				Circle(
 					$Dimensions::Materials{bolts}{r},

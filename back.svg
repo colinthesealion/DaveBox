@@ -37,13 +37,14 @@ text.cut {
 }
 			]]></style>
 		</defs>
-	<g data-sub="SVG::Indent" transform="translate(5.000000, 5.000000)"><g data-sub="SVG::Overlay" transform="translate(74.200000, 72.780000)"><g data-sub="SVG::Overlay:2" transform="translate(-68.200000, -67.780000)"><g data-sub="SVG::JoinVertical" transform="translate(68.200000, 0.000000)"><g data-sub="SVG::JoinVertical:2" transform="translate(-63.200000,0)"></g></g>
-<g data-sub="SVG::JoinVertical" transform="translate(68.200000, 10.000000)"><g data-sub="SVG::JoinVertical:2" transform="translate(-16.500000,0)"><circle r="2.100000" cx="7.000000" cy="7.500000" class="cut" />
+	<g transform="translate(5.000000, 5.000000)"><g transform="translate(74.200000, 72.780000)"><g transform="translate(-68.200000, -67.780000)"><g transform="translate(68.200000, 0.000000)"><g transform="translate(-63.200000,0)"></g></g>
+<g transform="translate(68.200000, 10.000000)"><g transform="translate(-16.500000,0)"><circle r="2.100000" cx="7.000000" cy="7.500000" class="cut" />
 <circle r="2.100000" cx="26.000000" cy="7.500000" class="cut" /></g></g>
-<g data-sub="SVG::JoinVertical" transform="translate(68.200000, 83.560000)"><g data-sub="SVG::JoinVertical:2" transform="translate(-63.200000,0)"></g></g>
-<g data-sub="SVG::JoinVertical" transform="translate(68.200000, 128.560000)"><g data-sub="SVG::JoinVertical:2" transform="translate(-68.200000,0)"><g data-sub="SVG::Slots" transform="translate(26.780000, 0)"><rect width="28.280000" height="7.000000" class="cut" /></g>
-<g data-sub="SVG::Slots" transform="translate(81.340000, 0)"><rect width="28.280000" height="7.000000" class="cut" /></g></g></g></g>
-<g data-sub="SVG::Overlay:2" transform="translate(-74.200000, -72.780000)"><path d="M0 0 l148.4 0 l0 29.112 l-6 0 l0 12.656 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 3.8 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 12.656 l6 0 l0 29.112 l-6 0 l0 12.656 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 3.8 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 12.656 l6 0 l0 29.112 l-148.4 0 l0 -29.112 l6 0 l0 -12.656 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 -3.8 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 -12.656 l-6 0 l0 -29.112 l6 0 l0 -12.656 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 -3.8 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 -12.656 l-6 0 Z" class="cut" />
+<g transform="translate(68.200000, 83.560000)"><g transform="translate(-63.200000,0)"></g></g>
+<g transform="translate(68.200000, 128.560000)"><g transform="translate(-68.200000,0)"><g transform="translate(26.780000, 0)"><rect width="28.280000" height="7.000000" class="cut" /></g>
+<g transform="translate(81.340000, 0)"><rect width="28.280000" height="7.000000" class="cut" /></g></g></g></g>
+<g transform="translate(-74.200000, -72.780000)"><path d="M0 0 l148.4 0 l0 29.112 l-6 0 l0 12.656 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 3.8 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 12.656 l6 0 l0 29.112 l-6 0 l0 12.656 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 3.8 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 12.656 l6 0 l0 29.112 l-148.4 0 l0 -29.112 l6 0 l0 -12.656 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 -3.8 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 -12.656 l-6 0 l0 -29.112 l6 0 l0 -12.656 l8.2 0 l0 2.15 l3 0 l0 -2.15 l8.2 0 l0 -3.8 l-8.2 0 l0 -2.15 l-3 0 l0 2.15 l-8.2 0 l0 -12.656 l-6 0 Z" class="cut" />
+<path d="M-1.5875 -1.5875 l151.575 0 l0 32.287 l-6 0 l0 12.656 l-11.375 0 l0 -2.15 l0.175 0 l0 2.15 l-8.2 0 l0 0.625 l8.2 0 l0 2.15 l-0.175 0 l0 -2.15 l11.375 0 l0 12.656 l6 0 l0 32.287 l-6 0 l0 12.656 l-11.375 0 l0 -2.15 l0.175 0 l0 2.15 l-8.2 0 l0 0.625 l8.2 0 l0 2.15 l-0.175 0 l0 -2.15 l11.375 0 l0 12.656 l6 0 l0 32.287 l-151.575 0 l0 -32.287 l6 0 l0 -12.656 l11.375 0 l0 2.15 l-0.175 0 l0 -2.15 l8.2 0 l0 -0.625 l-8.2 0 l0 -2.15 l0.175 0 l0 2.15 l-11.375 0 l0 -12.656 l-6 0 l0 -32.287 l6 0 l0 -12.656 l11.375 0 l0 2.15 l-0.175 0 l0 -2.15 l8.2 0 l0 -0.625 l-8.2 0 l0 -2.15 l0.175 0 l0 2.15 l-11.375 0 l0 -12.656 l-6 0 Z" class="cut" />
 <circle r="1.900000" cx="3.000000" cy="14.556000" class="cut" />
 <circle r="1.900000" cx="3.000000" cy="72.780000" class="cut" />
 <circle r="1.900000" cx="3.000000" cy="131.004000" class="cut" />

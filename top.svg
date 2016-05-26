@@ -37,5 +37,5 @@ text.cut {
 }
 			]]></style>
 		</defs>
-	<g data-sub="SVG::Indent" transform="translate(5.000000, 5.000000)"><g data-sub="SVG::Overlay" transform="translate(74.200000, 96.050000)"><g data-sub="SVG::Overlay:2" transform="translate(-63.200000, -85.050000)"></g>
-<g data-sub="SVG::Overlay:2" transform="translate(-74.200000, -96.050000)"><rect width="148.400000" height="192.100000" class="cut" /></g></g></g></svg>
+	<g transform="translate(5.000000, 5.000000)"><g transform="translate(74.200000, 96.050000)"><g transform="translate(-63.200000, -85.050000)"></g>
+<g transform="translate(-74.200000, -96.050000)"><rect width="148.400000" height="192.100000" class="cut" /></g></g></g></svg>
