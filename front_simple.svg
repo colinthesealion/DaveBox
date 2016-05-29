@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="136.400000mm" height="149.660000mm" viewBox="0 0 136.400000 149.660000">
+		<defs>
+			<style type="text/css"><![CDATA[
+				.cut {
+    stroke: black;
+    stroke-width: 0.1;
+    fill: none;
+    color: black;
+}
+
+.etch {
+    stroke: red;
+    stroke-width: 0.1;
+    fill: none;
+    color: red;
+}
+
+.route {
+    stroke: fuchsia;
+    stroke-width: 0.1;
+    fill: none;
+}
+
+text {
+    text-anchor: middle;
+    font-size: 15;
+    font-weight: light;
+}
+
+text.etch {
+    fill: red;
+}
+
+text.cut {
+    font-size: 8;
+    fill: black;
+}
+			]]></style>
+		</defs>
+	<g transform="translate(5.000000, 5.000000)"><g transform="translate(63.200000, 69.830000)"><g transform="translate(-63.200000, -69.830000)"><g transform="translate(63.200000, 0.000000)"><g transform="translate(-63.200000,0)"></g></g>
+<g transform="translate(63.200000, 10.000000)"><g transform="translate(-9.959292,0)"><g transform="translate(9.959292, 11.500000)"><g transform="translate(-9.959292, -11.500000)"><path d="M9.95929214352105 0 l9.95929214352105 5.75 l0 11.5 l-9.95929214352105 5.75 l-9.95929214352105 -5.75 l0 -11.5 Z" class="route" /></g>
+<g transform="translate(-9.300000, -9.300000)"><circle r="8.000000" cx="9.300000" cy="9.300000" class="cut" /></g></g></g></g>
+<g transform="translate(63.200000, 83.560000)"><g transform="translate(-63.200000,0)"></g></g>
+<g transform="translate(63.200000, 128.560000)"><g transform="translate(-63.200000,0)"></g></g>
+<g transform="translate(63.200000, 139.560000)"><g transform="translate(-63.200000,0)"></g></g></g>
+<g transform="translate(-63.200000, -69.830000)"><rect width="126.400000" height="139.660000" class="cut" /></g></g></g></svg>
