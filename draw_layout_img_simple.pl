@@ -7,7 +7,7 @@ no warnings qw(uninitialized);
 use File::Slurp qw(slurp);
 
 use Dimensions;
-use Layout;
+use LayoutSimple;
 use SVG;
 
 my ($key) = @ARGV;
@@ -15,7 +15,7 @@ my ($key) = @ARGV;
 my $layout = SVG::Indent(
 	$Dimensions::Padding,
 	$Dimensions::Padding,
-	Layout::Complete($key),
+	LayoutSimple::Complete($key),
 );
 
 my $css = slurp('style.css');
