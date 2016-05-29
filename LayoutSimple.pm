@@ -1,4 +1,4 @@
-package Layout;
+package LayoutSimple;
 
 use strict;
 use warnings;
@@ -164,11 +164,14 @@ sub Innards {
 					w => $bottom->{w},
 					h => $Dimensions::MaxPartsHeight,
 				},
-				SVG::Slots({
-					w => $bottom->{w} + 2 * $Dimensions::Padding,
-					count => 5,
-					class => 'cut',
-				}),
+				{
+					w => $bottom->{w},
+					h => $Dimensions::Materials{plexiglass}{thickness},
+				},
+				{
+					w => $bottom->{w},
+					h => 0.1,
+				},
 			],
 		});
 	}
@@ -176,16 +179,23 @@ sub Innards {
 	if ($key eq 'left' || $key eq 'right') {
 		return SVG::JoinVertical({
 			parts => [
+				{
+					w => $bottom->{h},
+					h => $Dimensions::Padding,
+				},
 				Ports($key),
 				{
 					w => $bottom->{h},
 					h => $Dimensions::MaxPartsHeight,
 				},
-				SVG::Slots({
-					w => $bottom->{h} + 2 * $Dimensions::Padding,
-					count => 7,
-					class => 'cut',
-				}),
+				{
+					w => $bottom->{h},
+					h => $Dimensions::Materials{plexiglass}{thickness},
+				},
+				{
+					w => $bottom->{h},
+					h => 0.1,
+				},
 			],
 		});
 	}
@@ -198,15 +208,15 @@ sub Enclosure {
 
 	my $innards = Innards($key);
 	if ($key eq 'bottom') {
-		return SVG::Tabs({
+		return {
 			w => $innards->{w} + 2 * $Dimensions::Padding,
 			h => $innards->{h} + 2 * $Dimensions::Padding,
-			count => {
-				w => 5,
-				h => 7,
-			},
-			class => 'cut',
-		});
+			svg => SVG::Rect(
+				$innards->{w} + 2 * $Dimensions::Padding,
+				$innards->{h} + 2 * $Dimensions::Padding,
+				{ class => 'cut' },
+			),
+		};
 	}
 	elsif ($key eq 'top') {
 		my $w = $innards->{w} + 2 * $Dimensions::Padding + 2 * $Dimensions::Materials{plexiglass}{thickness};
@@ -218,22 +228,45 @@ sub Enclosure {
 		};
 	}
 	elsif ($key eq 'front' || $key eq 'back') {
-		return SVG::Dovetail({
-			w => $innards->{w} + 2 * $Dimensions::Materials{plexiglass}{thickness},
-			h => $innards->{h} + 2 * $Dimensions::Padding,
-			count => 2,
-			class => 'cut',
-			innie => 1,
-		});
+		return {
+			w => $innards->{w} + 2 * $Dimensions::Padding,
+			h => $innards->{h},
+			svg => SVG::Rect(
+				$innards->{w} + 2 * $Dimensions::Padding,
+				$innards->{h},
+				{ class => 'cut' },
+			),
+		};
 	}
 	elsif ($key eq 'left' || $key eq 'right') {
-		return SVG::Dovetail({
-			w => $innards->{w},
-			h => $innards->{h} + 2 * $Dimensions::Padding,
-			count => 2,
-			class => 'cut',
-			outie => 1,
-		});
+		my $tab_size = $innards->{h} / 5;
+		my $slot_size = ($innards->{w} + 2 * $Dimensions::Padding) / 7;
+		return {
+			w => $innards->{w} + 2 * $Dimensions::Padding + 2 * $Dimensions::Materials{plexiglass}{thickness},
+			h => $innards->{h},
+			svg => join('', (
+				SVG::Rect(
+					$innards->{w} + 2 * $Dimensions::Padding + 2 * $Dimensions::Materials{plexiglass}{thickness},
+					$innards->{h},
+					{ class => 'cut' },
+				),
+				map {
+					SVG::Circle(
+						$Dimensions::Materials{bolts}{r},
+						@$_,
+						{ class => 'cut' },
+					);
+				} (
+					[$Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_size / 2],
+					[$Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_size / 2],
+					[$innards->{w} + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_size / 2],
+					[$innards->{w} + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_size / 2],
+					[$Dimensions::Materials{plexiglass}{thickness} + 3 * $slot_size / 2, $innards->{h} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Padding],
+					[$Dimensions::Materials{plexiglass}{thickness} + 7 * $slot_size / 2, $innards->{h} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Padding],
+					[$Dimensions::Materials{plexiglass}{thickness} + 11 * $slot_size / 2, $innards->{h} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Padding],
+				),
+			)),
+		};
 	}
 
 	die "Unknown enclosure: $key";
