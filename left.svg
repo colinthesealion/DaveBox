@@ -37,12 +37,12 @@ text.cut {
 }
 			]]></style>
 		</defs>
-	<g transform="translate(5.000000, 5.000000)"><g transform="translate(96.350000, 67.930000)"><g transform="translate(-90.050000, -62.930000)"><g transform="translate(90.050000, 0.000000)"><g transform="translate(-46.760000,0)"><g transform="translate(0.000000, 0.000000)"><g transform="translate(12.875000, 0.000000)"><g transform="translate(-12.875000,0)"><circle r="11.500000" cx="12.875000" cy="15.890000" class="cut" />
-<circle r="2.550000" cx="3.800000" cy="3.800000" class="cut" />
-<circle r="2.550000" cx="21.950000" cy="27.980000" class="cut" /></g></g>
-<g transform="translate(12.875000, 36.780000)"><g transform="translate(-12.875000,0)"><circle r="11.500000" cx="12.875000" cy="15.890000" class="cut" />
-<circle r="2.550000" cx="3.800000" cy="3.800000" class="cut" />
-<circle r="2.550000" cx="21.950000" cy="27.980000" class="cut" /></g></g></g>
+	<g transform="translate(5.000000, 5.000000)"><g transform="translate(96.350000, 67.930000)"><g transform="translate(-90.050000, -62.930000)"><g transform="translate(90.050000, 0.000000)"><g transform="translate(-46.760000,0)"><g transform="translate(0.000000, 0.000000)"><g transform="translate(12.875000, 0.000000)"><g transform="translate(-12.875000,0)"><circle r="11.100000" cx="12.875000" cy="15.890000" class="cut" />
+<circle r="2.600000" cx="3.800000" cy="3.800000" class="cut" />
+<circle r="2.600000" cx="21.950000" cy="27.980000" class="cut" /></g></g>
+<g transform="translate(12.875000, 36.780000)"><g transform="translate(-12.875000,0)"><circle r="11.100000" cx="12.875000" cy="15.890000" class="cut" />
+<circle r="2.600000" cx="3.800000" cy="3.800000" class="cut" />
+<circle r="2.600000" cx="21.950000" cy="27.980000" class="cut" /></g></g></g>
 <g transform="translate(30.750000, 0.000000)"></g>
 <g transform="translate(40.750000, 0.000000)"><g transform="translate(26.385000, 15.100000)"><g transform="translate(-16.800000, -12.550000)"><rect width="33.600000" height="25.100000" class="cut" /></g></g>
 <circle r="1.750000" cx="5.010000" cy="15.100000" class="cut" />

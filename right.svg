@@ -41,12 +41,12 @@ text.cut {
 <circle r="1.750000" cx="5.010000" cy="15.100000" class="cut" />
 <circle r="1.750000" cx="47.760000" cy="15.100000" class="cut" /></g>
 <g transform="translate(57.770000, 0.000000)"></g>
-<g transform="translate(67.770000, 0.000000)"><g transform="translate(12.875000, 0.000000)"><g transform="translate(-12.875000,0)"><circle r="11.500000" cx="12.875000" cy="15.890000" class="cut" />
-<circle r="2.550000" cx="3.800000" cy="3.800000" class="cut" />
-<circle r="2.550000" cx="21.950000" cy="27.980000" class="cut" /></g></g>
-<g transform="translate(12.875000, 36.780000)"><g transform="translate(-12.875000,0)"><circle r="11.500000" cx="12.875000" cy="15.890000" class="cut" />
-<circle r="2.550000" cx="3.800000" cy="3.800000" class="cut" />
-<circle r="2.550000" cx="21.950000" cy="27.980000" class="cut" /></g></g></g></g></g>
+<g transform="translate(67.770000, 0.000000)"><g transform="translate(12.875000, 0.000000)"><g transform="translate(-12.875000,0)"><circle r="11.100000" cx="12.875000" cy="15.890000" class="cut" />
+<circle r="2.600000" cx="3.800000" cy="3.800000" class="cut" />
+<circle r="2.600000" cx="21.950000" cy="27.980000" class="cut" /></g></g>
+<g transform="translate(12.875000, 36.780000)"><g transform="translate(-12.875000,0)"><circle r="11.100000" cx="12.875000" cy="15.890000" class="cut" />
+<circle r="2.600000" cx="3.800000" cy="3.800000" class="cut" />
+<circle r="2.600000" cx="21.950000" cy="27.980000" class="cut" /></g></g></g></g></g>
 <g transform="translate(90.050000, 73.560000)"><g transform="translate(-85.050000,0)"></g></g>
 <g transform="translate(90.050000, 118.560000)"><g transform="translate(-90.050000,0)"><g transform="translate(25.228571, 0)"><rect width="26.728571" height="7.300000" class="cut" /></g>
 <g transform="translate(76.685714, 0)"><rect width="26.728571" height="7.300000" class="cut" /></g>

@@ -174,7 +174,7 @@ our %IOPorts = (
 
 our %Materials = (
 	plexiglass => {
-		thickness => 6,
+		thickness => 6.3,
 	},
 	bolts => {
 		r => 1.9,
