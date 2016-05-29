@@ -166,7 +166,7 @@ sub Innards {
 				},
 				{
 					w => $bottom->{w},
-					h => $Dimensions::Materials{plexiglass}{thickness},
+					h => 6,
 				},
 				{
 					w => $bottom->{w},
@@ -190,7 +190,7 @@ sub Innards {
 				},
 				{
 					w => $bottom->{h},
-					h => $Dimensions::Materials{plexiglass}{thickness},
+					h => 6,
 				},
 				{
 					w => $bottom->{h},
@@ -259,8 +259,8 @@ sub Enclosure {
 				} (
 					[$Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_size / 2],
 					[$Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_size / 2],
-					[$innards->{w} + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_size / 2],
-					[$innards->{w} + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_size / 2],
+					[$innards->{w} + 2 * $Dimensions::Padding + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 3 * $tab_size / 2],
+					[$innards->{w} + 2 * $Dimensions::Padding + 3 * $Dimensions::Materials{plexiglass}{thickness} / 2, 7 * $tab_size / 2],
 					[$Dimensions::Materials{plexiglass}{thickness} + 3 * $slot_size / 2, $innards->{h} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Padding],
 					[$Dimensions::Materials{plexiglass}{thickness} + 7 * $slot_size / 2, $innards->{h} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Padding],
 					[$Dimensions::Materials{plexiglass}{thickness} + 11 * $slot_size / 2, $innards->{h} - $Dimensions::Materials{plexiglass}{thickness} - $Dimensions::Padding],
