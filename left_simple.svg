@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="202.100000mm" height="149.660000mm" viewBox="0 0 202.100000 149.660000">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="202.700000mm" height="149.660000mm" viewBox="0 0 202.700000 149.660000">
 		<defs>
 			<style type="text/css"><![CDATA[
 				.cut {
@@ -37,7 +37,7 @@ text.cut {
 }
 			]]></style>
 		</defs>
-	<g transform="translate(5.000000, 5.000000)"><g transform="translate(96.050000, 69.830000)"><g transform="translate(-85.050000, -69.830000)"><g transform="translate(85.050000, 0.000000)"><g transform="translate(-85.050000,0)"></g></g>
+	<g transform="translate(5.000000, 5.000000)"><g transform="translate(96.350000, 69.830000)"><g transform="translate(-85.050000, -69.830000)"><g transform="translate(85.050000, 0.000000)"><g transform="translate(-85.050000,0)"></g></g>
 <g transform="translate(85.050000, 10.000000)"><g transform="translate(-46.760000,0)"><g transform="translate(0.000000, 0.000000)"><g transform="translate(12.875000, 0.000000)"><g transform="translate(-12.875000,0)"><circle r="11.500000" cx="12.875000" cy="15.890000" class="cut" />
 <circle r="2.700000" cx="3.800000" cy="3.800000" class="cut" />
 <circle r="2.700000" cx="21.950000" cy="27.980000" class="cut" /></g></g>
@@ -51,4 +51,4 @@ text.cut {
 <g transform="translate(85.050000, 83.560000)"><g transform="translate(-85.050000,0)"></g></g>
 <g transform="translate(85.050000, 128.560000)"><g transform="translate(-85.050000,0)"></g></g>
 <g transform="translate(85.050000, 139.560000)"><g transform="translate(-85.050000,0)"></g></g></g>
-<g transform="translate(-96.050000, -69.830000)"><rect width="192.100000" height="139.660000" class="cut" /><circle r="1.900000" cx="3.000000" cy="41.898000" class="cut" /><circle r="1.900000" cx="3.000000" cy="97.762000" class="cut" /><circle r="1.900000" cx="189.100000" cy="41.898000" class="cut" /><circle r="1.900000" cx="189.100000" cy="97.762000" class="cut" /><circle r="1.900000" cx="44.592857" cy="128.660000" class="cut" /><circle r="1.900000" cx="96.050000" cy="128.660000" class="cut" /><circle r="1.900000" cx="147.507143" cy="128.660000" class="cut" /></g></g></g></svg>
+<g transform="translate(-96.350000, -69.830000)"><rect width="192.700000" height="139.660000" class="cut" /><circle r="1.900000" cx="3.150000" cy="41.898000" class="cut" /><circle r="1.900000" cx="3.150000" cy="97.762000" class="cut" /><circle r="1.900000" cx="189.550000" cy="41.898000" class="cut" /><circle r="1.900000" cx="189.550000" cy="97.762000" class="cut" /><circle r="1.900000" cx="44.892857" cy="128.360000" class="cut" /><circle r="1.900000" cx="96.350000" cy="128.360000" class="cut" /><circle r="1.900000" cx="147.807143" cy="128.360000" class="cut" /></g></g></g></svg>
